@@ -10,8 +10,16 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
+    // fires when app component mounts to the DOM
+    const storageTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    if (storageTodos) {
+      setTodos(storageTodos);
+    }
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
-  }, [todos]);
+  });
 
   function addTodo(todo) {
     // add new todo task to the beginning of todos array
@@ -19,7 +27,7 @@ function App() {
   }
 
   function removeTodo(id) {
-    setTodos(todos.filter(todo => todo.id != id));
+    setTodos(todos.filter(todo => todo.id !== id));
   }
 
   function toggleComplete(id) {
@@ -40,7 +48,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Typography style={{ padding: 16}} variant="h1">
-          React TODO
+          React TODO List
         </Typography>
         <TodoForm addTodo={addTodo} />
         <TodoList 

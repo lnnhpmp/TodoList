@@ -16,10 +16,12 @@ function TodoForm({ addTodo }) {
     function handleSubmit(e) {
         e.preventDefault();
         if (todo.task.trim()) {
-            addTodo({ ...todo, id: uuid() });
+            // Equal to addTodo(Object.assign({id: uuid()}, {task: todo.task}, {completed: todo.completed}));
+            addTodo( {...todo, id: uuid()});
             // reset task input
             setTodo({ ...todo, task: "" });
         }
+        console.log(todo)
     }
 
     return (

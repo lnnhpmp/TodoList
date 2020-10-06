@@ -7,7 +7,7 @@ function TodoList({ todos, removeTodo, toggleComplete }) {
         <List>
             {todos.map(todo => (
                 <Todo 
-                    key={todo.id} 
+                    key={todo.id} // important
                     todo={todo} 
                     removeTodo={removeTodo}
                     toggleComplete={toggleComplete}
